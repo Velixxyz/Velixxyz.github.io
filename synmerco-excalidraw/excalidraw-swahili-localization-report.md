@@ -205,8 +205,72 @@ PULL 2 re-ran the same two requests 24 hours after the PULL 1 note (PULL 2 note 
 - Pinned response header: `Date: Sat, 14 Nov 2026 02:10:53 GMT`
 - Master response header: `Date: Sat, 14 Nov 2026 02:10:56 GMT`
 - HTTP 200 for both; pinned 33,630 bytes, SHA-256 `30cde995f90d3714632e4031b3c950fb8b6c3f55f4722a855b806385852dcbbb`; master 33,711 bytes, SHA-256 `59fb4514a8de9ad98629c74468acde9572fccedcd260020725910635bc0575b4` — both byte-identical to PULL 1.
-- Raw excerpt (start of both response bodies, identical):
-  `{"labels": {"signUp": "Sign up", "signIn": "Sign in", "upgrade": "Upgrade", "tryExcalidrawPlus": "Try Excalidraw+", "plusFreeTrial": "14-day free trial", "paste": "Paste", "pasteAsPlaintext": "Paste as plaintext", "pasteCharts": "Paste charts", "chartType_bar": "Bar chart", ...`
+- Raw excerpts (verbatim, exactly as the PULL 2 responses returned them, with line breaks and indentation preserved). Pinned PULL 2 response: 33,630 bytes, SHA-256 `30cde995f90d3714632e4031b3c950fb8b6c3f55f4722a855b806385852dcbbb`; master PULL 2 response: 33,711 bytes, SHA-256 `59fb4514a8de9ad98629c74468acde9572fccedcd260020725910635bc0575b4` — both byte-identical to PULL 1, so the added/changed key lines below are the same lines verified in Requests 1–2.
+
+  Opening lines of each PULL 2 body (identical in pinned and master, lines 1-4):
+
+```text
+{
+  "labels": {
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+```
+
+  Pinned (PULL 2) — Labels section (lines 118-121) — `labels.minimap` and `labels.zoom` are ABSENT: `toggleGrid` is followed directly by `addToLibrary`:
+
+```text
+    "you": "You",
+    "toggleGrid": "Toggle grid",
+    "addToLibrary": "Add to library",
+    "removeFromLibrary": "Remove from library",
+```
+
+  Pinned (PULL 2) — Buttons section (lines 249-253) — `buttons.zoomToFit` is ABSENT: `resetZoom` is followed directly by `menu`:
+
+```text
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "menu": "Menu",
+    "done": "Done",
+```
+
+  Pinned (PULL 2) — `labels.showHints` (lines 204-206):
+
+```text
+    "midpointSnapping": "Snap to midpoints",
+    "showHints": "Show hints",
+    "inputDevice": "Input",
+```
+
+  Master (PULL 2) — Labels section (lines 118-122) — the two added keys are present between `toggleGrid` and `addToLibrary`:
+
+```text
+    "you": "You",
+    "toggleGrid": "Toggle grid",
+    "minimap": "Minimap",
+    "zoom": "Zoom",
+    "addToLibrary": "Add to library",
+```
+
+  Master (PULL 2) — Buttons section (lines 251-256) — `buttons.zoomToFit` is present between `resetZoom` and `menu`:
+
+```text
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "zoomToFit": "Zoom to fit",
+    "menu": "Menu",
+    "done": "Done",
+```
+
+  Master (PULL 2) — `labels.showHints` (lines 206-208):
+
+```text
+    "midpointSnapping": "Snap to midpoints",
+    "showHints": "Toolbar hints",
+    "inputDevice": "Input",
+```
 
 ### Request 5 — PULL 2 progress note
 
