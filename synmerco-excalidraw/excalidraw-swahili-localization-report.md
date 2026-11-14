@@ -128,16 +128,70 @@ PULL 2 re-ran the same two requests 24 hours after the PULL 1 note (PULL 2 note 
 - URL: `https://raw.githubusercontent.com/excalidraw/excalidraw/7ded689cad49331167e29fd88b38f38d3736d576/packages/excalidraw/locales/en.json`
 - Response header: `Date: Fri, 13 Nov 2026 02:02:15 GMT`
 - HTTP 200, 33,630 bytes, SHA-256 `30cde995f90d3714632e4031b3c950fb8b6c3f55f4722a855b806385852dcbbb`
-- Raw excerpt (start of response body):
-  `{"labels": {"signUp": "Sign up", "signIn": "Sign in", "upgrade": "Upgrade", "tryExcalidrawPlus": "Try Excalidraw+", "plusFreeTrial": "14-day free trial", "paste": "Paste", "pasteAsPlaintext": "Paste as plaintext", "pasteCharts": "Paste charts", "chartType_bar": "Bar chart", ...`
+- Raw excerpts (verbatim, exactly as the response returned them, with line breaks and indentation preserved). Pinned response: 33,630 bytes, SHA-256 `30cde995f90d3714632e4031b3c950fb8b6c3f55f4722a855b806385852dcbbb`.
+
+  Labels section (lines 118-121) — `labels.minimap` and `labels.zoom` are ABSENT: `toggleGrid` is followed directly by `addToLibrary`. `"minimap"` occurs 0 times in the whole pinned response, and there is no standalone `"zoom"` key:
+
+```text
+    "you": "You",
+    "toggleGrid": "Toggle grid",
+    "addToLibrary": "Add to library",
+    "removeFromLibrary": "Remove from library",
+```
+
+  Buttons section (lines 249-253) — `buttons.zoomToFit` is ABSENT: `resetZoom` is followed directly by `menu`:
+
+```text
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "menu": "Menu",
+    "done": "Done",
+```
+
+  `labels.showHints` (lines 204-206):
+
+```text
+    "midpointSnapping": "Snap to midpoints",
+    "showHints": "Show hints",
+    "inputDevice": "Input",
+```
 
 ### Request 2 — master file (PULL 1)
 
 - URL: `https://raw.githubusercontent.com/excalidraw/excalidraw/master/packages/excalidraw/locales/en.json`
 - Response header: `Date: Fri, 13 Nov 2026 02:09:47 GMT`
 - HTTP 200, 33,711 bytes, SHA-256 `59fb4514a8de9ad98629c74468acde9572fccedcd260020725910635bc0575b4`
-- Raw excerpt (start of response body):
-  `{"labels": {"signUp": "Sign up", "signIn": "Sign in", "upgrade": "Upgrade", "tryExcalidrawPlus": "Try Excalidraw+", "plusFreeTrial": "14-day free trial", "paste": "Paste", "pasteAsPlaintext": "Paste as plaintext", "pasteCharts": "Paste charts", "chartType_bar": "Bar chart", ...`
+- Raw excerpts (verbatim, exactly as the response returned them, with line breaks and indentation preserved). Master response: 33,711 bytes, SHA-256 `59fb4514a8de9ad98629c74468acde9572fccedcd260020725910635bc0575b4`.
+
+  Labels section (lines 118-122) — the two added keys are present between `toggleGrid` and `addToLibrary`:
+
+```text
+    "you": "You",
+    "toggleGrid": "Toggle grid",
+    "minimap": "Minimap",
+    "zoom": "Zoom",
+    "addToLibrary": "Add to library",
+```
+
+  Buttons section (lines 251-256) — `buttons.zoomToFit` is present between `resetZoom` and `menu`:
+
+```text
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "zoomToFit": "Zoom to fit",
+    "menu": "Menu",
+    "done": "Done",
+```
+
+  `labels.showHints` (lines 206-208):
+
+```text
+    "midpointSnapping": "Snap to midpoints",
+    "showHints": "Toolbar hints",
+    "inputDevice": "Input",
+```
 
 ### Request 3 — PULL 1 progress note
 
